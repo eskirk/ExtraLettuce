@@ -22,6 +22,8 @@ import com.jjoe64.graphview.series.Series;
 public class MainActivity extends AppCompatActivity {
 
     GraphView graph;
+    int balance = 500;
+    int goal = 800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +31,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().hide();
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        /**
+         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+         fab.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        .setAction("Action", null).show();
+        }
         });
+         */
 
         setupGraph();
     }
@@ -87,6 +90,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void button1Click(View view){
-        Toast.makeText(getBaseContext(), "POP :D", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "$" + balance + " out of your $" + goal + "!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void returnBalance(View view){
+        Toast.makeText(getBaseContext(), "$420.69", Toast.LENGTH_SHORT).show();
+    }
+
+    public void newGoal(View view){
+
     }
 }

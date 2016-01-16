@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< Updated upstream
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -12,107 +11,90 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-=======
-<<<<<<< HEAD
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.elliot.extralettuce.MainActivity">
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="327dp"
-                android:layout_height="match_parent"
-                android:id="@+id/progressBar2"
-                android:layout_gravity="center_horizontal|bottom"
-                android:paddingBottom="50dp"
-                android:max="100"
-                android:indeterminate="false"
-                android:progress="75" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello Lettuce!"
-        android:id="@+id/textView2"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-</RelativeLayout>
-=======
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:fillViewport="false"
-    android:background="#2e7d32">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
->>>>>>> Stashed changes
         android:orientation="vertical"
-        android:background="#2e7d32">
-
+        android:background="#2e7d32"
+        android:paddingTop="0dp"
+        android:weightSum="1">
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Extra Lettuce" />
+            android:text="Balance: "
+            android:onClick="returnBalance"
+            android:paddingTop="0dp"
+            android:layout_weight="1.02"
+            android:background="@drawable/round_button" />
 
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_height="200dip"
             android:id="@+id/graph"
-            android:paddingTop="50dp" />
+            android:elevation="20dp"
+            android:background="#81c784">
+            <!-- <shape android:shape="rectangle" >
+                 <corners android:radius="3dip" />
+             </shape>
+            -->
+        </com.jjoe64.graphview.GraphView>
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:id="@+id/progressBar"
-            android:progress="25"
-            android:textAlignment="center" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="20dp">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="73dp"
+                android:layout_height="36dp"
+                android:text="@string/goalInfoButton"
+                android:onClick="button1Click"
+                android:nestedScrollingEnabled="false"
+                android:background="@drawable/round_button" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:id="@+id/progressBar"
+                android:progress="25"
+                android:textAlignment="center"
+                android:indeterminate="false" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="73dp"
+                android:layout_height="36dp"
+                android:text="@string/goalInfoButton"
+                android:onClick="button1Click"
+                android:nestedScrollingEnabled="false"
+                android:background="@drawable/round_button" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:id="@+id/progressBar2"
+                android:progress="73"
+                android:textAlignment="center"
+                android:indeterminate="false" />
+        </FrameLayout>
 
         <Button
-            android:layout_width="73dp"
-            android:layout_height="36dp"
-            android:text="Goal1"
-            android:id="@+id/button1"
-            android:onClick="button1Click"
-            android:nestedScrollingEnabled="false"/>
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Goal"
+            android:id="@+id/newGoalButton"
+            android:layout_weight="1.02"
+            android:elevation="20dp"
+            android:clickable="false"
+            android:background="@drawable/round_button" />
 
     </LinearLayout>
-<<<<<<< Updated upstream
 </ScrollView>
-=======
-</ScrollView>
->>>>>>> origin/master
->>>>>>> Stashed changes
