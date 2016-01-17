@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -23,9 +22,7 @@ import org.json.JSONObject;
 
 public class RegisterActivity extends Activity {
     protected EditText userName;
-    protected EditText userEmail;
     protected EditText userPassword;
-    protected EditText verifyUserPassword;
     protected Button registerButton;
     protected TextView registerTitle;
     protected TextView registerInfo;
@@ -35,9 +32,7 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.activity_register);
 
         userName = (EditText) findViewById(R.id.usernameRegisterEditText);
-        userEmail = (EditText) findViewById(R.id.emailRegisterEditText);
         userPassword = (EditText) findViewById(R.id.passwordRegisterEditText);
-        verifyUserPassword = (EditText) findViewById(R.id.verifyPWRegisterEditText);
         registerButton = (Button) findViewById(R.id.registerButton);
         registerTitle = (TextView) findViewById(R.id.registrationTitleTextView);
         registerInfo = (TextView) findViewById(R.id.registrationInfoTextView);
@@ -51,16 +46,8 @@ public class RegisterActivity extends Activity {
 
                 String username = userName.getText().toString().trim();
                 String password = userPassword.getText().toString().trim();
-                String verifyPassword = verifyUserPassword.getText().toString().trim();
-                String email = userEmail.getText().toString().trim();
-
                 //TO DO: implement Verify Passwords
 
-                if(!password.equals(verifyPassword)) {
-                    //red text message
-                    Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
-                    return;
-                }
 
                 new AsyncTask<Void, Void, Void>(){
 
