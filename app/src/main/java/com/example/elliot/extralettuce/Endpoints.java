@@ -5,5 +5,7 @@ package com.example.elliot.extralettuce;
  */
 public class Endpoints {
     public static final String BASE_URL = "www.extralettuce/co/account";
-    public static final String GOALS = "goals";
+    public static final String GOALS = "/goals";
+    public static final String BALANCE = "/balance";
+    public static final String HISTORY = "/history";
 }

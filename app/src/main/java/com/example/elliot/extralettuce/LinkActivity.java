@@ -50,9 +50,6 @@ public class LinkActivity extends AppCompatActivity {
     }
 
     public void attemptLink(View view) {
-
-        System.out.println("YO dis is the shit");
-
         String URI = "";
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.POST, URI,

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -39,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 /**
@@ -55,6 +55,7 @@ public class GraphFragment extends Fragment {
     private GoalCardAdapter goalCardAdapter;
     private SlideInLeftAnimationAdapter adapterWrapper;
     private List<Goal> goalList;
+    private int balance;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -74,6 +75,7 @@ public class GraphFragment extends Fragment {
         adapterWrapper = new SlideInLeftAnimationAdapter(goalCardAdapter);
         adapterWrapper.setFirstOnly(false);
         goalCardAdapter.setAdapterWrapper(adapterWrapper);
+        balance = getBalanceFromServer();
         getGoalsFromServer();
     }
 
@@ -101,7 +103,9 @@ public class GraphFragment extends Fragment {
 
     //Graphs will be setup using user deposit info
     public void setupGraph(){
+        getDepositsFromServer();
         graph = (GraphView) layout.findViewById(R.id.graph);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(0, 1),
                 new DataPoint(1, 3),
@@ -110,7 +114,11 @@ public class GraphFragment extends Fragment {
                 new DataPoint(4, 8)
         });
         graph.addSeries(series);
-        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);
+        graph.getGridLabelRenderer().setHighlightZeroLines(true);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
+        graph.getGridLabelRenderer().setVerticalAxisTitle("$");
+        graph.setTitle("Progress");
 
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
@@ -119,6 +127,50 @@ public class GraphFragment extends Fragment {
             }
         });
     }
+
+
+
+    private void getDepositsFromServer(){
+        new AsyncTask<Void, Void, Void>() {
+
+            class JSONObjectErrorListener implements Response.ErrorListener {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+            class JSONObjectResponseListener implements Response.Listener<JSONObject> {
+                @Override
+                public void onResponse(JSONObject repsonse){
+
+                }
+            }
+            @Override
+        protected Void doInBackground(Void... params) {
+                try {
+                    SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
+
+                    JSONObject headerObject = new JSONObject();
+                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                            Request.Method.GET,
+                            Endpoints.BASE_URL + Endpoints.GOALS,
+                            headerObject,
+                            new JSONObjectResponseListener(),
+                            new JSONObjectErrorListener());
+                    Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
+                } catch(Exception e) {
+
+                }
+
+                //TODO get dates/deposit values and add them to the graph as data points
+                return null;
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
 
     private void getGoalsFromServer() {
         new AsyncTask<Void, Void, Void>() {
@@ -149,6 +201,98 @@ public class GraphFragment extends Fragment {
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                             Request.Method.GET,
                             Endpoints.BASE_URL + Endpoints.GOALS,
+                            headerObject,
+                            new JSONObjectResponseListener(),
+                            new JSONObjectErrorListener());
+                    Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
+                } catch(Exception e) {
+
+                }
+
+                //TODO get goals and add each goal to goalCardAdapter.goalsList
+                return null;
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
+    private int getBalanceFromServer() {
+        RequestQueue queue = Volley.newRequestQueue(this.getContext());
+        String url = "http://www.extralettuce.co/account/history";
+        new AsyncTask<Void, Void, Void>() {
+
+            class JSONObjectErrorListener implements Response.ErrorListener {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+
+            class JSONObjectResponseListener implements Response.Listener<JSONObject> {
+
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
+
+                    JSONObject headerObject = new JSONObject();
+                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                            Request.Method.GET,
+                            Endpoints.BASE_URL + Endpoints.BALANCE,
+                            headerObject,
+                            new JSONObjectResponseListener(),
+                            new JSONObjectErrorListener());
+                    Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
+                } catch(Exception e) {
+
+                }
+
+                //TODO get balance and add it to the toolbar
+                return null;
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        return 0;
+    }
+
+    private void getDepositHistoryFromServer(){
+
+        new AsyncTask<Void, Void, Void>() {
+
+            class JSONObjectErrorListener implements Response.ErrorListener {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+
+            class JSONObjectResponseListener implements Response.Listener<JSONObject> {
+
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
+
+                    JSONObject headerObject = new JSONObject();
+                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                            Request.Method.GET,
+                            Endpoints.BASE_URL + Endpoints.HISTORY,
                             headerObject,
                             new JSONObjectResponseListener(),
                             new JSONObjectErrorListener());
