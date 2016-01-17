@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -55,13 +54,6 @@ public class GraphFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment GraphFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static GraphFragment newInstance() {
         GraphFragment fragment = new GraphFragment();
         Bundle args = new Bundle();
@@ -79,7 +71,7 @@ public class GraphFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        layout = (RelativeLayout) inflater.inflate(R.layout.fragment_home_view, container, false);
+        layout = (RelativeLayout) inflater.inflate(R.layout.fragment_graph, container, false);
         goalRecyclerView = (RecyclerView) layout.findViewById(R.id.goal_recycler);
         goalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         goalRecyclerView.setAdapter(goalCardAdapter);
