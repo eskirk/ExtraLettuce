@@ -1,35 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="73dp"
-            android:layout_height="36dp"
-            android:text="@string/goalInfoButton"
-            android:onClick="button1Click"
-            android:nestedScrollingEnabled="false"
-            android:background="@drawable/round_button" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:id="@+id/progressBar"
-            android:progress="25"
-            android:textAlignment="center"
-            android:indeterminate="false"
-            android:layout_below="@+id/goalName" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Goal Name"
-            android:id="@+id/goalName" />
+            android:id="@+id/top_layout"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/position">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/position_circle"
+                    android:src="@drawable/goals_position_circle"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="1"
+                    android:id="@+id/position_text"
+                    android:layout_centerInParent="true"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="$500"
+                android:id="@+id/goal_money"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"
+                android:textColor="@color/colorPrimaryDark" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottom_layout"
+            android:layout_below="@+id/top_layout"
+            android:layout_margin="8dp">
+
+            <Button
+                android:id="@+id/modify_button"
+                android:layout_width="73dp"
+                android:layout_height="36dp"
+                android:text="Modify"
+                android:onClick="button1Click"
+                android:nestedScrollingEnabled="false"
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:progress="25"
+                android:textAlignment="center"
+                android:indeterminate="false"
+                android:layout_below="@+id/modify_button"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:progressTint="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Goal Name"
+                android:id="@+id/goalName"
+                android:textColor="@color/colorPrimaryDark" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

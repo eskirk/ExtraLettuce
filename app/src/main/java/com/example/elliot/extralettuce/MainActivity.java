@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_activity);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void newGoalCard(View view){
-        graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 0));
+        graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 400));
     }
 
 
