@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.elliot.extralettuce.Endpoints;
@@ -34,10 +35,14 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
@@ -55,7 +60,9 @@ public class GraphFragment extends Fragment {
     private GoalCardAdapter goalCardAdapter;
     private SlideInLeftAnimationAdapter adapterWrapper;
     private List<Goal> goalList;
-    private int balance;
+    private int totalBalance;
+    private List<String> dates;
+    private List<Integer> deposits;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -75,7 +82,7 @@ public class GraphFragment extends Fragment {
         adapterWrapper = new SlideInLeftAnimationAdapter(goalCardAdapter);
         adapterWrapper.setFirstOnly(false);
         goalCardAdapter.setAdapterWrapper(adapterWrapper);
-        balance = getBalanceFromServer();
+        //balance = getBalanceFromServer();
         getGoalsFromServer();
     }
 
@@ -105,14 +112,19 @@ public class GraphFragment extends Fragment {
     public void setupGraph(){
         getDepositsFromServer();
         graph = (GraphView) layout.findViewById(R.id.graph);
+        List<DataPoint> points = new ArrayList<DataPoint>();
+        Scanner scan;
+        for (int i = 0; i < deposits.size(); i++){
+            scan = new Scanner(dates.get(i));
+            scan.useDelimiter("-");
+            points.add(new DataPoint(new Date(scan.nextInt(), scan.nextInt(), scan.nextInt()), deposits.get(i)));
+        }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 3),
-                new DataPoint(2, 5),
-                new DataPoint(3, 7),
-                new DataPoint(4, 8)
-        });
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+        for (int q = 0; q < points.size(); q++){
+            series.appendData(points.get(q), true, points.size());
+        }
+
         graph.addSeries(series);
         graph.getGridLabelRenderer().setHighlightZeroLines(true);
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
@@ -139,10 +151,20 @@ public class GraphFragment extends Fragment {
 
                 }
             }
-            class JSONObjectResponseListener implements Response.Listener<JSONObject> {
+            class JSONArrayResponseListener implements Response.Listener<JSONArray> {
                 @Override
-                public void onResponse(JSONObject repsonse){
-
+                public void onResponse(JSONArray response){
+                    dates.clear();
+                    deposits.clear();
+                    try {
+                        for(int i = 0; i < response.length(); i++){
+                            JSONObject jResponse = response.getJSONObject(i);
+                            dates.add(jResponse.getString("date"));
+                            deposits.add(jResponse.getInt("balance"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             @Override
@@ -151,13 +173,13 @@ public class GraphFragment extends Fragment {
                     SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
 
                     JSONObject headerObject = new JSONObject();
-                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+                    headerObject.put("Authorization", "Token eaf1025ce2cf0d3ba8984c9e34a38864f22708eb" );
 
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                    JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
                             Request.Method.GET,
-                            Endpoints.BASE_URL + Endpoints.GOALS,
+                            Endpoints.BASE_URL + Endpoints.HISTORY,
                             headerObject,
-                            new JSONObjectResponseListener(),
+                            new JSONArrayResponseListener(),
                             new JSONObjectErrorListener());
                     Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
 
