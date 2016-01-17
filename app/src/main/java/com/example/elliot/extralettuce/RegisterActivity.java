@@ -43,7 +43,7 @@ public class RegisterActivity extends Activity {
         registerInfo = (TextView) findViewById(R.id.registrationInfoTextView);
 
         registerTitle.setTypeface(Typefaces.yeahPapa(this));
-        registerInfo.setTypeface(Typefaces.yeahPapa(this));
+        //registerInfo.setTypeface(Typefaces.yeahPapa(this));
         //Listen to register button click
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
