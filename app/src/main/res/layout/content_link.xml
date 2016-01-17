@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.elliot.extralettuce.LinkActivity"
+    tools:showIn="@layout/activity_link"
     android:background="#00C853"
     android:paddingRight="15dp"
     android:paddingLeft="15dp"
