@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="73dp"
+            android:layout_height="36dp"
+            android:text="@string/goalInfoButton"
+            android:onClick="button1Click"
+            android:nestedScrollingEnabled="false"
+            android:background="@drawable/round_button" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:id="@+id/progressBar"
+            android:progress="25"
+            android:textAlignment="center"
+            android:indeterminate="false"
+            android:layout_below="@+id/goalName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Goal Name"
+            android:id="@+id/goalName" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

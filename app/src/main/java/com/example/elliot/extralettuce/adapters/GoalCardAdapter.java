@@ -2,9 +2,11 @@ package com.example.elliot.extralettuce.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.elliot.extralettuce.R;
 import com.example.elliot.extralettuce.dataClasses.Goal;
 
 import java.util.ArrayList;
@@ -22,11 +24,16 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.goal_card, parent, false);
+
+
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+
 
     }
 
@@ -35,11 +42,6 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
         return goalList != null ? goalList.size() : 0;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
 
     public void addGoal(Goal goal) {
         goalList.add(goal);
@@ -58,6 +60,12 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
 
     private void sortList() {
 
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View itemView) {
+            super(itemView);
+        }
     }
 
 }

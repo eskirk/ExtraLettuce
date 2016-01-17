@@ -1,0 +1,41 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/balance"
+        android:onClick="returnBalance"
+        android:paddingTop="0dp"
+        android:layout_weight="1.02"
+        android:background="@drawable/round_button" />
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:id="@+id/graph"
+        android:elevation="20dp"
+        android:background="#81c784">
+        <!-- <shape android:shape="rectangle" >
+             <corners android:radius="3dip" />
+         </shape>
+        -->
+    </com.jjoe64.graphview.GraphView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/goal_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/graph" >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</RelativeLayout>
