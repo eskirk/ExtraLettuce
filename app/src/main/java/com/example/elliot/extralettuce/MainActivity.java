@@ -3,22 +3,19 @@ package com.example.elliot.extralettuce;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.elliot.extralettuce.adapters.GoalCardAdapter;
 import com.example.elliot.extralettuce.dataClasses.Goal;
 import com.example.elliot.extralettuce.fragments.BankFragment;
 import com.example.elliot.extralettuce.fragments.GraphFragment;
@@ -45,15 +42,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -64,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         graphFragment = GraphFragment.newInstance();
+        bankFragment = BankFragment.newInstance();
+        settingsFragment = SettingsFragment.newInstance();
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack(GRAPH_FRAGMENT)
@@ -111,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_home) {
             if (mPosition != GRAPH_POS) {
-                graphFragment = GraphFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(GRAPH_FRAGMENT)
@@ -121,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if (id == R.id.nav_bank) {
             if (mPosition != BANK_POS) {
-                bankFragment = BankFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(BANK_FRAGMENT)
@@ -131,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         } else if (id == R.id.nav_settings) {
             if (mPosition != SETTINGS_POS) {
-                settingsFragment = SettingsFragment.newInstance();
                 getSupportFragmentManager()
                         .beginTransaction()
                         .addToBackStack(SETTINGS_FRAGMENT)
