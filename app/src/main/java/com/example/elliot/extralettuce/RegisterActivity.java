@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.elliot.extralettuce.support.Typefaces;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends Activity {
     protected EditText userName;
@@ -43,9 +46,9 @@ public class RegisterActivity extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String username = userName.getText().toString().trim();
-                String password = userPassword.getText().toString().trim();
+                Log.d("Success", "CLICKED!");
+                final String username = userName.getText().toString().trim();
+                final String password = userPassword.getText().toString().trim();
                 //TO DO: implement Verify Passwords
 
 
@@ -54,23 +57,25 @@ public class RegisterActivity extends Activity {
                     class JsonObjectErrorListener implements Response.ErrorListener {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            //wehn error
+                            Log.e("success", error.getMessage());
                         }
                     }
 
-                    class JsonObjectResponseListenor implements Response.Listener<JSONObject> {
+                    class JsonObjectResponseListener implements Response.Listener<JSONObject> {
                         @Override
                         public void onResponse(JSONObject response) {
                             //when if returns ok then parse info from server
 
                             try {
-                                if((Integer) response.get("status") == 201) {
-                                    System.out.println("success");
+                                if(!response.has("errors")) {
+
+                                    Log.d("success", response.getString("token"));
                                 } else {
-                                    System.out.println("status code: " + response.get("status"));
+
+                                    Log.d("success", "status code: " + response.getString("errors"));
                                 }
                             } catch(Exception e) {
-                                System.out.println(e.getMessage());
+                                Log.d("success", e.getMessage());
                             }
 
                         }
@@ -78,13 +83,16 @@ public class RegisterActivity extends Activity {
 
                     @Override
                     protected Void doInBackground(Void... params) {
-                        //json object request
-                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Endpoints.BASE_URL+"/create", new JSONObject(),
-                                new JsonObjectResponseListenor(), new JsonObjectErrorListener());
+                        Log.d("Succes", "In Background...");
+                        HashMap<String, String> payload = new HashMap<String, String>();
+                        payload.put("username", username);
+                        payload.put("password", password);
+                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Endpoints.BASE_URL+"/create/", new JSONObject(payload),
+                                new JsonObjectResponseListener(), new JsonObjectErrorListener());
                         Volley.newRequestQueue(RegisterActivity.this).add(request);
                         return null;
                     }
-                };
+                }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
                 Intent returnHome = new Intent(RegisterActivity.this, LinkActivity.class);
                 startActivity(returnHome);
                 //www.extraleetuce.co/account/create

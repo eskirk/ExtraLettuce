@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import com.example.elliot.extralettuce.support.Typefaces;
 
 import org.json.JSONObject;
 
+import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +39,10 @@ public class LinkActivity extends AppCompatActivity {
     protected TextView captionTextView;
     protected Button continueButton;
     protected Spinner bankSelectDropDown;
-
+    protected String[] banks;
+    private String selectedBank;
+    private Map<String, String> bankInstitutionMap;
+    private boolean infoValidated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +52,48 @@ public class LinkActivity extends AppCompatActivity {
         iconImage = (ImageView) findViewById(R.id.linkIconImageView);
         bankUsernameTextView = (EditText) findViewById(R.id.linkBankUsernameTextView);
         bankPasswordTextView = (EditText) findViewById(R.id.linkBankPasswordTextView);
-        bankSelectDropDown = (Spinner) findViewById(R.id.linkBankSelectSpinner);
-
         titleTextView = (TextView) findViewById(R.id.linkScreenTitle);
         captionTextView = (TextView) findViewById(R.id.linkScreenCaption);
-        continueButton = (Button) findViewById(R.id.linkTransitionButton);
+        continueButton = (Button) findViewById(R.id.linkNextButton);
         titleTextView.setTypeface(Typefaces.yeahPapa(this));
-        String[] banks = new String[]{"Bank of America"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_dropdown_item_1line, banks);
+        bankSelectDropDown = (Spinner) findViewById(R.id.linkBankSelectSpinner);
+
+        infoValidated = false;
+        banks = new String[]{"Bank of America", "Wells Fargo", "Chase"};
+        bankInstitutionMap = new HashMap<>();
+        bankInstitutionMap.put("Bank of America", "bofa");
+        bankInstitutionMap.put("Wells Fargo", "wells");
+        bankInstitutionMap.put("Chase", "chase");
+        initSpinner();
+
     }
 
-    public void attemptLink(View view) {
+    private void initSpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, banks);
+        bankSelectDropDown.setAdapter(adapter);
+        bankSelectDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedBank = banks[position];
+                System.out.println(selectedBank + " selected");
+            }
 
-        System.out.println("YO dis is the shit");
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //do nothing
+            }
+        });
+    }
+
+    public void nextOnClick(View view) {
+        if(infoValidated) {
+            //intent
+        } else {
+            attemptLink();
+        }
+    }
+
+    public void attemptLink() {
 
         String URI = "http://www.extralettuce.co/account/link/";
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -85,13 +118,14 @@ public class LinkActivity extends AppCompatActivity {
                 params.put("token", "6c5d9d793ebc4bf74875e2f04b8f89c3451e4bdc");
                 params.put("bank_username",bankUsernameTextView.getText().toString() );
                 params.put("bank_password",bankPasswordTextView.getText().toString());
+                params.put("institution", selectedBank);
                 return params;
             }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
+                params.put("Content-Type", "application/json");
                 return params;
             }
 
