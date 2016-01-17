@@ -17,6 +17,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
 
+
         </activity>
         <activity
             android:name=".LinkActivity"
@@ -32,13 +33,9 @@
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"
             android:noHistory="true">
-            <intent-filter>
 
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            </activity>
     </application>
 
 </manifest>
