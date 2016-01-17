@@ -139,6 +139,12 @@ public class LinkActivity extends AppCompatActivity {
             }
 
             @Override
+            protected void onPostExecute(Void aVoid) {
+                Intent returnHome = new Intent(LinkActivity.this, MainActivity.class);
+                LinkActivity.this.startActivity(returnHome);
+            }
+
+            @Override
             protected Void doInBackground(Void... params) {
                 Log.d("Succes", "In Background...");
 
