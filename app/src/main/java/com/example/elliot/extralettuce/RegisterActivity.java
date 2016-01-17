@@ -1,7 +1,9 @@
 package com.example.elliot.extralettuce;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -64,21 +66,24 @@ public class RegisterActivity extends Activity {
                     class JsonObjectResponseListener implements Response.Listener<JSONObject> {
                         @Override
                         public void onResponse(JSONObject response) {
-                            //when if returns ok then parse info from server
-
                             try {
                                 if(!response.has("errors")) {
-
+                                    SharedPreferences preferences = RegisterActivity.this.getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
+                                    preferences.edit().putString(Preferences.TOKEN, response.getString("token"));
                                     Log.d("success", response.getString("token"));
                                 } else {
-
                                     Log.d("success", "status code: " + response.getString("errors"));
                                 }
                             } catch(Exception e) {
                                 Log.d("success", e.getMessage());
                             }
-
                         }
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        Intent returnHome = new Intent(RegisterActivity.this, LinkActivity.class);
+                        RegisterActivity.this.startActivity(returnHome);
                     }
 
                     @Override
@@ -93,11 +98,6 @@ public class RegisterActivity extends Activity {
                         return null;
                     }
                 }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-                Intent returnHome = new Intent(RegisterActivity.this, LinkActivity.class);
-                startActivity(returnHome);
-                //www.extraleetuce.co/account/create
-               //Client client = ClientBuilder.newClient();
-               // WebTarget target = client.target("http://localhost:9998").path("resource");
             }
         });
     }

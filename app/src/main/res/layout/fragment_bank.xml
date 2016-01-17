@@ -1,13 +1,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.elliot.extralettuce.fragments.BankFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/bao_circle"
+        android:id="@+id/bank_circle" />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bank of America"
+        android:textSize="22sp"
+        android:layout_toEndOf="@+id/bank_circle"
+        android:id="@+id/bank_title"
+        android:layout_above="@+id/checking_title"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checking - 0123"
+        android:textSize="18sp"
+        android:layout_toEndOf="@+id/bank_circle"
+        android:id="@+id/checking_title"
+        android:layout_alignBottom="@+id/bank_circle"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp" />
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Bank Fragment" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checking_title"
+        android:layout_marginTop="8dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Banking Information"
+                android:background="@drawable/trans_ripple"
+                android:minHeight="40dp"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/change_banking_info" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove Bank"
+                android:background="@drawable/trans_ripple"
+                android:minHeight="40dp"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/remove_bank"
+                android:layout_below="@+id/change_banking_info" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>
