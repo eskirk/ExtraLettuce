@@ -2,52 +2,102 @@ package com.example.elliot.extralettuce;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.elliot.extralettuce.support.Typefaces;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 public class RegisterActivity extends Activity {
-    protected EditText mUsername;
-    protected EditText mUserEmail;
-    protected EditText mUserPassword;
-    protected Button mRegisterButton;
-    protected TextView mRegisterTitle;
-    protected TextView mRegisterInfo;
+    protected EditText userName;
+    protected EditText userPassword;
+    protected Button registerButton;
+    protected TextView registerTitle;
+    protected TextView registerInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mUsername = (EditText) findViewById(R.id.usernameRegisterEditText);
-        mUserEmail = (EditText) findViewById(R.id.emailRegisterEditText);
-        mUserPassword = (EditText) findViewById(R.id.passwordRegisterEditText);
-        mRegisterButton = (Button) findViewById(R.id.registerButton);
-        mRegisterTitle = (TextView) findViewById(R.id.registrationTitleTextView);
-        mRegisterInfo = (TextView) findViewById(R.id.registrationInfoTextView);
+        userName = (EditText) findViewById(R.id.usernameRegisterEditText);
+        userPassword = (EditText) findViewById(R.id.passwordRegisterEditText);
+        registerButton = (Button) findViewById(R.id.registerButton);
+        registerTitle = (TextView) findViewById(R.id.registrationTitleTextView);
+        registerInfo = (TextView) findViewById(R.id.registrationInfoTextView);
 
-        mRegisterTitle.setTypeface(Typefaces.yeahPapa(this));
-        mRegisterTitle.setTypeface(Typefaces.yeahPapa(this));
+        registerTitle.setTypeface(Typefaces.yeahPapa(this));
+        registerInfo.setTypeface(Typefaces.yeahPapa(this));
         //Listen to register button click
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //toast
-                Toast.makeText(RegisterActivity.this, "Welcome", Toast.LENGTH_LONG).show();
+                Log.d("Success", "CLICKED!");
+                final String username = userName.getText().toString().trim();
+                final String password = userPassword.getText().toString().trim();
+                //TO DO: implement Verify Passwords
 
-                String username = mUsername.getText().toString().trim();
-                String password = mUserPassword.getText().toString().trim();
-                String email = mUserEmail.getText().toString().trim();
-                Intent returnHome = new Intent(RegisterActivity.this, MainActivity.class);
+
+                new AsyncTask<Void, Void, Void>(){
+
+                    class JsonObjectErrorListener implements Response.ErrorListener {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("success", error.getMessage());
+                        }
+                    }
+
+                    class JsonObjectResponseListener implements Response.Listener<JSONObject> {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            //when if returns ok then parse info from server
+
+                            try {
+                                if(!response.has("errors")) {
+
+                                    Log.d("success", response.getString("token"));
+                                } else {
+
+                                    Log.d("success", "status code: " + response.getString("errors"));
+                                }
+                            } catch(Exception e) {
+                                Log.d("success", e.getMessage());
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        Log.d("Succes", "In Background...");
+                        HashMap<String, String> payload = new HashMap<String, String>();
+                        payload.put("username", username);
+                        payload.put("password", password);
+                        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Endpoints.BASE_URL+"/create/", new JSONObject(payload),
+                                new JsonObjectResponseListener(), new JsonObjectErrorListener());
+                        Volley.newRequestQueue(RegisterActivity.this).add(request);
+                        return null;
+                    }
+                }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                Intent returnHome = new Intent(RegisterActivity.this, LinkActivity.class);
                 startActivity(returnHome);
                 //www.extraleetuce.co/account/create
-
+               //Client client = ClientBuilder.newClient();
+               // WebTarget target = client.target("http://localhost:9998").path("resource");
             }
         });
     }
