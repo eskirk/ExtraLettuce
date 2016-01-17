@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elliot.extralettuce.support.Typefaces;
@@ -17,8 +18,8 @@ public class RegisterActivity extends Activity {
     protected EditText mUserEmail;
     protected EditText mUserPassword;
     protected Button mRegisterButton;
-    protected mRegisterTitle;
-    protected mRegisterInfo;
+    protected TextView mRegisterTitle;
+    protected TextView mRegisterInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +29,8 @@ public class RegisterActivity extends Activity {
         mUserEmail = (EditText) findViewById(R.id.emailRegisterEditText);
         mUserPassword = (EditText) findViewById(R.id.passwordRegisterEditText);
         mRegisterButton = (Button) findViewById(R.id.registerButton);
-        mRegisterTitle = (EditText) findViewById(R.id.registrationTitleTextView);
-        mRegisterInfo = (EditText) findViewById(R.id.registrationInfoTextView);
+        mRegisterTitle = (TextView) findViewById(R.id.registrationTitleTextView);
+        mRegisterInfo = (TextView) findViewById(R.id.registrationInfoTextView);
 
         mRegisterTitle.setTypeface(Typefaces.yeahPapa(this));
         mRegisterTitle.setTypeface(Typefaces.yeahPapa(this));
