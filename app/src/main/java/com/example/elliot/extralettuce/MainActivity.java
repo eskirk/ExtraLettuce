@@ -14,8 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.elliot.extralettuce.dataClasses.Goal;
 import com.example.elliot.extralettuce.fragments.BankFragment;
 import com.example.elliot.extralettuce.fragments.GraphFragment;
@@ -34,12 +41,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private GraphFragment graphFragment;
     private BankFragment bankFragment;
     private SettingsFragment settingsFragment;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -50,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //Todo create a working custom action bar
+        //createCustomActionBarTitle();
 
         graphFragment = GraphFragment.newInstance();
         bankFragment = BankFragment.newInstance();
@@ -164,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 // code for matching password
                 String amount = moneyVal.getText().toString();
                 String time = timePeriod.getText().toString();
-                Toast.makeText(getBaseContext(),"Now saving $" + amount + " over " + time, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Now saving $" + amount + " over " + time, Toast.LENGTH_SHORT).show();
             }
         });
         AlertDialog dialog = alert.create();
@@ -176,20 +186,56 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    private void createCustomActionBarTitle() {
+        this.getActionBar().setDisplayShowCustomEnabled(true);
+        this.getActionBar().setDisplayShowTitleEnabled(false);
+
+        LayoutInflater inflator = LayoutInflater.from(this);
+        View v = inflator.inflate(R.layout.custom_action_bar, null);
+
+        //assign the view to the actionbar
+        this.getActionBar().setCustomView(v);
+    }
 
 
-    public void button1Click(View view){
+    public void button1Click(View view) {
         Toast.makeText(getBaseContext(), "$" + balance + " out of your $" + goal + "!", Toast.LENGTH_SHORT).show();
     }
 
-    public void returnBalance(View view){
+    public void returnBalance(View view) {
         Toast.makeText(getBaseContext(), "$420.69", Toast.LENGTH_SHORT).show();
     }
 
-    public void newGoalCard(View view){
+    public void newGoalCard(View view) {
         graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 400));
     }
 
+    public int getBalanceFromServer() {
+        final TextView mTextView = (TextView) findViewById(R.id.text);
+
+
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://www.extralettuce.co/account/balance";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        mTextView.setText("Response is: " + response.substring(0, 500));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mTextView.setText("That didn't work!");
+            }
+        });
+//    // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+        return balance;
+    }
 
 
 //    @Override
@@ -236,4 +282,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //    }
 
 
-}
+    }
