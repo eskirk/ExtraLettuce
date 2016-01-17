@@ -61,9 +61,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <Space
-                android:layout_width="fill_parent"
-                android:layout_height="18dp"/>
+
             <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -86,13 +84,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:id="@+id/linkBankUsernameTextView" />
-            <space
-                android:background="@drawable/divider"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/linkBankUsernameTextView"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
 
 
             <TextView
@@ -120,13 +111,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:id="@+id/linkBankPasswordTextView"/>
-                <space
-                android:background="@drawable/divider"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/linkBankPasswordTextView"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
 
 
             <TextView
@@ -139,12 +123,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="2dp"
                 android:textColor="#6F6F6F"
-                android:id="@+id/linkBankPasswordSubtitle"/>
-
-            <Space
-                android:layout_width="fill_parent"
-                android:layout_height="18dp"
-                android:layout_below="@+id/linkBankPasswordSubtitle"/>
+                android:id="@+id/linkBankPasswordSubtitle"
+                android:layout_marginBottom="16dp" />
 
 
         </RelativeLayout>
