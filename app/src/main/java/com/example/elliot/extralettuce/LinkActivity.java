@@ -15,9 +15,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -27,10 +25,8 @@ import com.example.elliot.extralettuce.support.Typefaces;
 
 import org.json.JSONObject;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.LinkedTransferQueue;
 
 
 public class LinkActivity extends AppCompatActivity {
