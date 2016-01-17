@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void newGoalCard(View view){
-        graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 0));
+        graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 400));
     }
 
 
