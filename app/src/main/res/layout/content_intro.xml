@@ -63,20 +63,24 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
         
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/login"
-            android:text="Login" />
+            android:text="Login"
+            android:background="@android:color/transparent" />
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/get_started"
-            android:text="Get Started" />
+            android:text="Get Started"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
 </RelativeLayout>
