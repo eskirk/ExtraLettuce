@@ -19,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.elliot.extralettuce.Endpoints;
@@ -27,6 +26,7 @@ import com.example.elliot.extralettuce.Preferences;
 import com.example.elliot.extralettuce.R;
 import com.example.elliot.extralettuce.adapters.GoalCardAdapter;
 import com.example.elliot.extralettuce.dataClasses.Goal;
+import com.example.elliot.extralettuce.support.CustomJsonArrayRequest;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
@@ -40,9 +40,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
@@ -83,7 +81,7 @@ public class GraphFragment extends Fragment {
         adapterWrapper.setFirstOnly(false);
         goalCardAdapter.setAdapterWrapper(adapterWrapper);
         //balance = getBalanceFromServer();
-        getGoalsFromServer();
+        //getGoalsFromServer();
     }
 
     @Override
@@ -110,22 +108,8 @@ public class GraphFragment extends Fragment {
 
     //Graphs will be setup using user deposit info
     public void setupGraph(){
-        getDepositsFromServer();
         graph = (GraphView) layout.findViewById(R.id.graph);
-        List<DataPoint> points = new ArrayList<DataPoint>();
-        Scanner scan;
-        for (int i = 0; i < deposits.size(); i++){
-            scan = new Scanner(dates.get(i));
-            scan.useDelimiter("-");
-            points.add(new DataPoint(new Date(scan.nextInt(), scan.nextInt(), scan.nextInt()), deposits.get(i)));
-        }
-
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-        for (int q = 0; q < points.size(); q++){
-            series.appendData(points.get(q), true, points.size());
-        }
-
-        graph.addSeries(series);
         graph.getGridLabelRenderer().setHighlightZeroLines(true);
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
@@ -133,11 +117,42 @@ public class GraphFragment extends Fragment {
         graph.setTitle("Progress");
 
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
-            @Override
-            public void onTap(Series series, DataPointInterface dataPoint) {
-                Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
-            }
-        });
+        @Override
+        public void onTap(Series series, DataPointInterface dataPoint) {
+        Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
+         }
+         });
+
+//  getDepositsFromServer();
+//        deposits = new ArrayList<Integer>();
+//
+//        graph = (GraphView) layout.findViewById(R.id.graph);
+//        List<DataPoint> points = new ArrayList<DataPoint>();
+//        Scanner scan;
+//        for (int i = 0; i < deposits.size(); i++){
+//            scan = new Scanner(dates.get(i));
+//            scan.useDelimiter("-");
+//            points.add(new DataPoint(new Date(scan.nextInt(), scan.nextInt(), scan.nextInt()), deposits.get(i)));
+//        }
+//
+//        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+//        for (int q = 0; q < points.size(); q++){
+//            series.appendData(points.get(q), true, points.size());
+//        }
+//
+//        graph.addSeries(series);
+//        graph.getGridLabelRenderer().setHighlightZeroLines(true);
+//        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
+//        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
+//        graph.getGridLabelRenderer().setVerticalAxisTitle("$");
+//        graph.setTitle("Progress");
+//
+//        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+//            @Override
+//            public void onTap(Series series, DataPointInterface dataPoint) {
+//                Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 
@@ -154,16 +169,19 @@ public class GraphFragment extends Fragment {
             class JSONArrayResponseListener implements Response.Listener<JSONArray> {
                 @Override
                 public void onResponse(JSONArray response){
-                    dates.clear();
-                    deposits.clear();
-                    try {
-                        for(int i = 0; i < response.length(); i++){
-                            JSONObject jResponse = response.getJSONObject(i);
-                            dates.add(jResponse.getString("date"));
-                            deposits.add(jResponse.getInt("balance"));
+                    if (dates != null) {
+                        dates.clear();
+                        deposits.clear();
+
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jResponse = response.getJSONObject(i);
+                                dates.add(jResponse.getString("date"));
+                                deposits.add(jResponse.getInt("balance"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
                 }
             }
@@ -173,12 +191,13 @@ public class GraphFragment extends Fragment {
                     SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
 
                     JSONObject headerObject = new JSONObject();
-                    headerObject.put("Authorization", "Token eaf1025ce2cf0d3ba8984c9e34a38864f22708eb" );
+                    headerObject.put("Authorization", "Token de3e5111fdcb141f925e30d5aef117f2873482c1" );
 
-                    JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
+                    CustomJsonArrayRequest jsonObjectRequest = new CustomJsonArrayRequest(
+                            GraphFragment.this.getContext(),
                             Request.Method.GET,
                             Endpoints.BASE_URL + Endpoints.HISTORY,
-                            headerObject,
+                            null,
                             new JSONArrayResponseListener(),
                             new JSONObjectErrorListener());
                     Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
@@ -218,7 +237,7 @@ public class GraphFragment extends Fragment {
                     SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
 
                     JSONObject headerObject = new JSONObject();
-                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+                    headerObject.put("Authorization", "Token de3e5111fdcb141f925e30d5aef117f2873482c1");
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                             Request.Method.GET,
