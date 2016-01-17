@@ -40,7 +40,7 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         android:text="pick a username and password you won&apos;t forget."
-        android:id="@+id/descriptionTextView"
+        android:id="@+id/registrationInfoTextView"
         android:layout_toRightOf="@+id/imageView"
         android:layout_below="@+id/registrationTitleTextView" />
 

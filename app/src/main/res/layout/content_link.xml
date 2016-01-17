@@ -65,49 +65,65 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
+                android:inputType="number"
                 android:layout_gravity="top"
                 android:textSize="30sp"
-                android:backgroundTint="@color/colorAccent"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:id="@+id/linkRoutingTextView" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/linkRoutingTextView"/>
+            <space
+                android:background="@drawable/divider"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/linkRoutingTextView"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linkRoutingTextView"
-                android:text="@string/link_routing_number"
+                android:text="@string/link_username"
                 android:layout_gravity="left"
                 android:textSize="20sp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="2dp"
                 android:textColor="#6F6F6F"
-                android:id="@+id/linkRoutingSubtitle"/>
+                android:id="@+id/linkBankUsernameTextView"/>
 
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linkRoutingSubtitle"
+                android:layout_below="@+id/linkBankUsernameTextView"
                 android:background="@color/white"
+                android:inputType="textPassword"
                 android:layout_gravity="top"
                 android:textSize="30sp"
-                android:backgroundTint="@color/colorAccent"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:id="@+id/linkAccountTextView" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:id="@+id/linkBankPasswordTextView"></EditText>
+                <space
+                android:background="@drawable/divider"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/linkBankPasswordTextView"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linkAccountTextView"
-                android:text="@string/link_account_number"
+                android:layout_below="@+id/linkBankPasswordTextView"
+                android:text="@string/link_password"
                 android:layout_gravity="left"
                 android:textSize="20dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="2dp"
                 android:textColor="#6F6F6F"
                 android:id="@+id/linkBankSubtitle"/>
