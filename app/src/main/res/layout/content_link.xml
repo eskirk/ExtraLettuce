@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.elliot.extralettuce.LinkActivity"
     tools:showIn="@layout/activity_link"
-    android:background="#18c041">
+    android:background="#00C853">
 
     <ImageView
         android:layout_width="100dp"
@@ -27,31 +27,33 @@
         android:textSize="38dp"
         android:maxLines="1"
         android:layout_toRightOf="@+id/linkIconImageView"
-        android:id="@+id/linkBankInfoTextView"
+        android:id="@+id/linkScreenTitle"
         android:textColor="@color/white"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linkBankInfoTextView"
+        android:layout_below="@+id/linkScreenTitle"
         android:layout_toRightOf="@+id/linkIconImageView"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:textColor="@color/white"
         android:textSize="20dp"
         android:text="to begin saving, we need a little more info"
-        android:id="@+id/textView" />
+        android:id="@+id/linkScreenCaption"
+        android:layout_marginTop="2dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/round_corners"
         android:orientation="vertical"
         android:id="@+id/linkCenterSheet"
         android:layout_below="@+id/linkIconImageView"
         android:layout_marginTop="50dp"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:elevation="4dp">
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -61,7 +63,8 @@
             android:backgroundTint="@color/colorAccent"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:id="@+id/linkRoutingTextView" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,7 +74,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
-            />
+            android:textColor="#6F6F6F" />
 
 
         <TextView
@@ -85,7 +88,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="5dp"
-            />
+            android:id="@+id/linkAccountTextView" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,7 +97,7 @@
             android:textSize="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="2dp"
-            />
+            android:textColor="#6F6F6F" />
 
         <Space
             android:layout_width="wrap_content"
@@ -121,10 +124,13 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="@string/continue_text"
+            android:background="@drawable/round_corners"
+            android:text="@string/link_button_text"
             android:textSize="20dp"
-            android:textColor="#18f041"/>
+            android:textColor="#00C853"
+            android:id="@+id/linkTransitionButton"
+            android:elevation="4dp"
+            android:onClick="attemptLink"/>
     </LinearLayout>
 
 
