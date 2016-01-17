@@ -27,7 +27,7 @@
         android:textSize="38dp"
         android:maxLines="1"
         android:layout_toRightOf="@+id/imageView"
-        android:id="@+id/registrationInfoTextView"
+        android:id="@+id/registrationTitleTextView"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp" />
 
