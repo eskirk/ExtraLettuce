@@ -15,7 +15,7 @@
         android:id="@+id/imageView"
         android:src="@drawable/happyface"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         android:id="@+id/registrationTitleTextView"
         android:textColor="@color/white"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="30dp" />
 
     <TextView
@@ -52,22 +52,21 @@
         android:layout_alignParentStart="true"
         android:id="@+id/RegisterCenterSheet"
         app:cardCornerRadius="3dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"
         android:elevation="4dp"
-        android:layout_above="@+id/registerButton"
         android:layout_below="@+id/imageView"
-        android:layout_marginBottom="30dp"
         android:background="@color/white"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginRight="16dp"
+        android:layout_centerHorizontal="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView2"
             android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/RegisterCenterSheet">
+            android:layout_alignBottom="@+id/RegisterCenterSheet"
+            android:paddingBottom="20dp">
 
             <!--Username-->
             <EditText
