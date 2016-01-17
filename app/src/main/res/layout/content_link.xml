@@ -74,21 +74,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:inputType="number"
                 android:layout_gravity="top"
                 android:textSize="30sp"
                 android:layout_below="@id/linkBankSelectSpinner"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:id="@+id/linkBankUsernameTextView" />
-            <ImageView
-                android:background="@drawable/divider"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/linkBankUsernameTextView"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+                android:id="@+id/linkBankUsernameTextView"
+                />
 
 
             <TextView
@@ -116,13 +109,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:id="@+id/linkBankPasswordTextView"/>
-                <ImageView
-                android:background="@drawable/divider"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/linkBankPasswordTextView"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
 
 
             <TextView
