@@ -5,10 +5,6 @@
     android:background="#00C853"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.elliot.extralettuce.RegisterActivity"
     tools:showIn="@layout/activity_register">
@@ -48,16 +44,6 @@
     android:layout_below="@+id/linkIconImageView" -->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="These passwords don&apos;t match. Try again?"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
-
     <android.support.v7.widget.CardView
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -71,22 +57,22 @@
         android:layout_above="@+id/registerButton"
         android:layout_below="@+id/imageView"
         android:layout_marginBottom="30dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView2"
             android:layout_alignParentStart="true"
-            android:layout_alignBottom="@+id/RegisterCenterSheet"
-            android:background="#ffffff">
+            android:layout_alignBottom="@+id/RegisterCenterSheet">
 
             <!--Username-->
             <EditText
-                android:background="@color/white"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword|textPersonName"
+                android:inputType="textPersonName"
                 android:id="@+id/usernameRegisterEditText"
                 android:layout_gravity="top"
                 android:textSize="20dp"
@@ -102,69 +88,27 @@
                 android:layout_below="@+id/usernameRegisterEditText"
                 android:text="Username"
                 android:layout_gravity="left"
-                android:textSize="15dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="2dp"
-                android:textColor="#6F6F6F"/>
+                android:textSize="18sp"
+                android:layout_marginTop="4dp"
+                android:textColor="#6F6F6F"
+                android:textIsSelectable="false"
+                android:layout_alignLeft="@+id/usernameRegisterEditText" />
 
             <!-- Email -->
             <!--layout_below: previousTextView-->
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/emailRegisterEditText"
-                android:layout_below="@+id/usernameRegisterTextView"
-                android:background="@color/white"
-                android:inputType="textEmailAddress"
-                android:layout_gravity="top"
-                android:textSize="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
-
-            <ImageView
-                android:background="#2E7D32"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/emailRegisterEditText"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/emailRegisterTextView"
-                android:layout_below="@+id/emailRegisterEditText"
-                android:text="Email"
-                android:layout_gravity="left"
-                android:textSize="15dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="2dp"
-                android:textColor="#6F6F6F"/>
 
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/passwordRegisterEditText"
-                android:layout_below="@+id/emailRegisterTextView"
                 android:inputType="textPassword"
-                android:background="@color/white"
                 android:layout_gravity="top"
                 android:textSize="20dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
-
-            <ImageView
-                android:background="#2E7D32"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/passwordRegisterEditText"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp"
+                android:layout_below="@+id/usernameRegisterTextView" />
 
 
             <TextView
@@ -174,56 +118,11 @@
                 android:layout_below="@+id/passwordRegisterEditText"
                 android:text="Password"
                 android:layout_gravity="left"
-                android:textSize="15dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="2dp"
-                android:textColor="#6F6F6F"/>
+                android:textSize="18sp"
+                android:layout_marginTop="4dp"
+                android:textColor="#6F6F6F"
+                android:layout_alignLeft="@+id/passwordRegisterEditText" />
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/verifyPWRegisterEditText"
-                android:layout_below="@+id/passwordRegisterTextView"
-                android:background="@color/white"
-
-                android:layout_gravity="top"
-                android:textSize="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
-
-            <ImageView
-                android:background="#2E7D32"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_alignBottom="@+id/verifyPWRegisterEditText" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/verifyPWRegisterTextView"
-                android:layout_below="@+id/verifyPWRegisterEditText"
-                android:text="Verify Password"
-                android:layout_gravity="left"
-                android:textSize="15dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="2dp"
-                android:textColor="#6F6F6F"/>
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="18dp"
-                android:layout_below="@+id/verifyPWRegisterTextView"/>
-
-            <ImageView
-                android:background="#2e5617"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_below="@+id/usernameRegisterEditText" />
 
         </RelativeLayout>
 
