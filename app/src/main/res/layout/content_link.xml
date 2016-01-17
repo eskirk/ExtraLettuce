@@ -4,136 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.elliot.extralettuce.LinkActivity"
     tools:showIn="@layout/activity_link"
-    android:background="#00C853">
+    android:background="#00C853"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="32dp">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:id="@+id/linkIconImageView"
         android:contentDescription= "@string/link_account_icon_cd"
-        android:src="#3e8a3a" />
+        android:layout_marginLeft="25dp"
+        android:src="@drawable/bankcircle" />
 
-    <TextView
+    <com.example.elliot.extralettuce.AutoResizeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Banking Info"
-        android:textSize="38dp"
+        android:textSize="55sp"
         android:maxLines="1"
         android:layout_toRightOf="@+id/linkIconImageView"
         android:id="@+id/linkScreenTitle"
         android:textColor="@color/white"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentTop="true"
+         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linkScreenTitle"
-        android:layout_toRightOf="@+id/linkIconImageView"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="30dp"
+        android:paddingRight="15dp"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="12sp"
         android:text="to begin saving, we need a little more info"
         android:id="@+id/linkScreenCaption"
-        android:layout_marginTop="2dp" />
+        android:textAlignment="textStart"
+        android:layout_below="@+id/linkScreenTitle"
+        android:layout_alignLeft="@+id/linkScreenTitle"
+        android:paddingTop="5dp" />
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_corners"
+        app:cardCornerRadius="3dp"
         android:orientation="vertical"
         android:id="@+id/linkCenterSheet"
         android:layout_below="@+id/linkIconImageView"
         android:layout_marginTop="50dp"
         android:layout_centerInParent="true"
         android:elevation="4dp">
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_gravity="top"
-            android:textSize="30dp"
-            android:backgroundTint="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/linkRoutingTextView" />
-        <TextView
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/link_routing_number"
-            android:layout_gravity="left"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="2dp"
-            android:textColor="#6F6F6F" />
+            android:layout_height="match_parent">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_gravity="top"
+                android:textSize="30sp"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/linkRoutingTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linkRoutingTextView"
+                android:text="@string/link_routing_number"
+                android:layout_gravity="left"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="#6F6F6F"
+                android:id="@+id/linkRoutingSubtitle"/>
 
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_gravity="top"
-            android:textSize="30dp"
-            android:backgroundTint="@color/colorAccent"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:id="@+id/linkAccountTextView" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/link_account_number"
-            android:layout_gravity="left"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            android:textColor="#6F6F6F" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linkRoutingSubtitle"
+                android:background="@color/white"
+                android:layout_gravity="top"
+                android:textSize="30sp"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/linkAccountTextView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linkAccountTextView"
+                android:text="@string/link_account_number"
+                android:layout_gravity="left"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="2dp"
+                android:textColor="#6F6F6F"
+                android:id="@+id/linkBankSubtitle"/>
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="18dp" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_below="@+id/linkBankSubtitle"/>
 
-    </LinearLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/link_more_info"
-        android:layout_below="@+id/linkCenterSheet"
+        android:layout_above="@+id/linkTransitionButton"
         android:id="@+id/moreInfoTextView"
         android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_marginBottom="20dp"/>
 
-    <LinearLayout
+
+    <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/moreInfoTextView">
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corners"
-            android:text="@string/link_button_text"
-            android:textSize="20dp"
-            android:textColor="#00C853"
-            android:id="@+id/linkTransitionButton"
-            android:elevation="4dp"
-            android:onClick="attemptLink"/>
-    </LinearLayout>
-
-
-
+        android:background="@drawable/round_corners"
+        android:text="@string/link_button_text"
+        android:textSize="20dp"
+        android:textColor="#00C853"
+        android:id="@+id/linkTransitionButton"
+        android:elevation="4dp"
+        android:onClick="attemptLink"
+        android:layout_marginBottom="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

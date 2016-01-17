@@ -1,5 +1,6 @@
 package com.example.elliot.extralettuce;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,17 +11,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.elliot.extralettuce.support.Typefaces;
+
 import org.w3c.dom.Text;
 
 public class LinkActivity extends AppCompatActivity {
 
 
-    ImageView iconImage = (ImageView) findViewById(R.id.linkIconImageView);
-    TextView routingTextView = (TextView) findViewById((R.id.linkRoutingTextView));
-    TextView accountTextView = (TextView) findViewById((R.id.linkAccountTextView));
-    TextView titleTextView = (TextView) findViewById(R.id.linkScreenTitle);
-    TextView captionTextView = (TextView) findViewById(R.id.linkScreenCaption);
-    Button continueButton = (Button) findViewById(R.id.linkTransitionButton);
+    ImageView iconImage;
+    TextView routingTextView;
+    TextView accountTextView;
+    TextView titleTextView;
+    TextView captionTextView;
+    Button continueButton;
 
 
     @Override
@@ -28,7 +31,13 @@ public class LinkActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        iconImage = (ImageView) findViewById(R.id.linkIconImageView);
+        routingTextView = (TextView) findViewById((R.id.linkRoutingTextView));
+        accountTextView = (TextView) findViewById((R.id.linkAccountTextView));
+        titleTextView = (TextView) findViewById(R.id.linkScreenTitle);
+        captionTextView = (TextView) findViewById(R.id.linkScreenCaption);
+        continueButton = (Button) findViewById(R.id.linkTransitionButton);
+        titleTextView.setTypeface(Typefaces.yeahPapa(this));
     }
 
     public void attemptLink(View view) {
