@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.elliot.extralettuce.LinkActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+    </android.support.design.widget.AppBarLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <com.example.elliot.extralettuce.AutoResizeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forget About It"
+        android:textSize="55sp"
+        android:maxLines="1"
+        android:id="@+id/linkScreenTitle"
+        android:textColor="@color/white"
+        android:layout_marginLeft="16dp"
+        android:gravity="center"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:text="set an amount over a period of time that we can start saving for"
+        android:id="@+id/linkScreenCaption"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/linkScreenTitle" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/graphic"
+        android:layout_above="@+id/save_text"
+        android:layout_below="@+id/linkScreenTitle"
+        android:src="@drawable/frequencyimg"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="-16dp" />
+
+    <Button
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/next_save"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:minWidth="150dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:text="I want to save"
+        android:id="@+id/save_text"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/layout_2" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_2"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/next_save"
+        android:visibility="visible">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/amount_et"
+            android:inputType="number"
+            android:minWidth="75dp"
+            android:hint="$50"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="per month"
+            android:id="@+id/textView3"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/amount_et"
+            android:layout_marginBottom="4dp"
+            android:layout_alignBottom="@+id/amount_et"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
