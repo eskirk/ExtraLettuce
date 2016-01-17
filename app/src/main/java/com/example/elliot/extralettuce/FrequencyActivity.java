@@ -1,5 +1,6 @@
-package com.example.elliot.extralettuce.support;
+package com.example.elliot.extralettuce;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -10,8 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.elliot.extralettuce.R;
+import com.example.elliot.extralettuce.fragments.GraphFragment;
+import com.example.elliot.extralettuce.support.Typefaces;
 
-public class Frequency extends AppCompatActivity {
+public class FrequencyActivity extends AppCompatActivity {
     TextView titleTV, saveTV, perMonth;
     EditText editText;
     Button button;
@@ -40,7 +43,9 @@ public class Frequency extends AppCompatActivity {
 
     public void next() {
         perMonth.setVisibility(View.VISIBLE);
-        saveAmount = Integer.parseInt(editText.getText().toString());
+        if (editText.getText().toString() != null)
+            saveAmount = Integer.parseInt(editText.getText().toString());
+
         button.setText("Let-tuce Save!");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +62,12 @@ public class Frequency extends AppCompatActivity {
             protected Void doInBackground(Void... params) {
 
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void res) {
+                Intent intent = new Intent(FrequencyActivity.this, GraphFragment.class);
+                FrequencyActivity.this.startActivity(intent);
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         //TODO start new Activity
