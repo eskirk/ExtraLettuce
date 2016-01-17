@@ -13,35 +13,103 @@
     tools:context="com.example.elliot.extralettuce.RegisterActivity"
     tools:showIn="@layout/activity_register">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Username"
-        android:ems="10"
-        android:id="@+id/usernameRegisterEditText"
-        android:layout_above="@+id/emailRegisterEditText"
-        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Email"
-        android:ems="10"
-        android:id="@+id/emailRegisterEditText"
-        android:layout_above="@+id/passwordRegisterEditText"
-        android:layout_alignParentStart="true" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:contentDescription= "@string/link_account_icon_cd" />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:ems="10"
-        android:id="@+id/passwordRegisterEditText"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:text="Sign Up"
+        android:textSize="38dp"
+        android:maxLines="1"
+        android:layout_toRightOf="@+id/imageView"
+        android:id="@+id/registrationInfoTextView"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/registrationInfoTextView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="pick a username and password you won&apos;t forget."
+        android:id="@+id/descriptionTextView" />
+
+    <android.support.v7.widget.CardView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/RegisterCenterSheet"
+        android:layout_above="@+id/registerButton"
+        android:layout_marginBottom="30dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword|textPersonName"
+                android:hint="Username"
+                android:ems="10"
+                android:id="@+id/usernameRegisterEditText"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp"
+                android:layout_alignParentEnd="false" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:ems="10"
+                android:id="@+id/emailRegisterEditText"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/usernameRegisterEditText"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:ems="10"
+                android:id="@+id/passwordRegisterEditText"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/emailRegisterEditText"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Verify Password"
+                android:ems="10"
+                android:id="@+id/verifyPWEditText"
+                android:layout_below="@+id/passwordRegisterEditText"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="2dp"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
 
     <Button
         android:background="#ffffff"
