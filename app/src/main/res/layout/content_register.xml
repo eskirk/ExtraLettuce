@@ -18,8 +18,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imageView"
-        android:src="@drawable/happyface"
-        android:contentDescription= "@string/link_account_icon_cd" />
+        android:src="@drawable/happyface"/>
 
     <TextView
         android:layout_width="match_parent"

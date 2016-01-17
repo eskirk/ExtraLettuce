@@ -21,13 +21,16 @@
         <activity
             android:name=".LinkActivity"
             android:label="@string/title_activity_link"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".IntroActivity"
+            android:label="@string/title_activity_intro"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
