@@ -110,6 +110,8 @@ public class LinkActivity extends AppCompatActivity {
         };*/
         final String bankUsername = bankUsernameTextView.getText().toString();
         final String bankPassword = bankPasswordTextView.getText().toString();
+        Log.d("bankUser", bankUsername);
+        Log.d("bankPass", bankPassword);
 
         new AsyncTask<Void, Void, Void>(){
 
@@ -145,9 +147,9 @@ public class LinkActivity extends AppCompatActivity {
                 Log.d("Succes", "In Background...");
 
                 Map<String, String> payload = new HashMap<>();
-                payload.put("bank_username",bankUsername);
-                payload.put("bank_password",bankPassword);
-                payload.put("institution", selectedBank);
+                payload.put("bank_username", bankUsername);
+                payload.put("bank_password", bankPassword);
+                payload.put("institution", "wells");
                 JsonObjectRequest request = new CustomJsonObjectRequest(LinkActivity.this, Request.Method.POST, Endpoints.BASE_URL+"/link/", new JSONObject(payload),
                         new JsonObjectResponseListener(), new JsonObjectErrorListener());
                 Volley.newRequestQueue(LinkActivity.this).add(request);

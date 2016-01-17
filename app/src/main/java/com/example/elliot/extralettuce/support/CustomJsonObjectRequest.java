@@ -35,7 +35,7 @@ public class CustomJsonObjectRequest extends JsonObjectRequest
         Map headers = new HashMap();
         SharedPreferences pref = c.getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
         //headers.put("token", pref.getString(Preferences.TOKEN, ""));
-        headers.put("Authorization","Token eaf1025ce2cf0d3ba8984c9e34a38864f22708eb");
+        headers.put("Authorization","Token de3e5111fdcb141f925e30d5aef117f2873482c1");
         return headers;
     }
 
