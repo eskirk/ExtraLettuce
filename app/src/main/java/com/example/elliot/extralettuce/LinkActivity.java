@@ -32,6 +32,7 @@ public class LinkActivity extends AppCompatActivity {
     }
 
     public void attemptLink(View view) {
+
         System.out.println("YO dis is the shit");
     }
 
