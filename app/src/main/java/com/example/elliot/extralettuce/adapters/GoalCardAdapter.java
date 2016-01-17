@@ -33,6 +33,7 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.mItem = goalList.get(position);
 
 
     }
@@ -63,6 +64,9 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        protected Goal mItem;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
         }
