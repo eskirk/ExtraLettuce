@@ -1,14 +1,15 @@
 package com.example.elliot.extralettuce;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
@@ -68,6 +69,39 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void displayAlertDialog() {
+        LayoutInflater inflater = getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.layout_custom_dialog, null);
+        final EditText moneyVal = (EditText) alertLayout.findViewById(R.id.enter_Value);
+        final EditText timePeriod = (EditText) alertLayout.findViewById(R.id.enter_Time);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Create a new Saving Goal");
+        alert.setView(alertLayout);
+        alert.setCancelable(false);
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getBaseContext(), "Cancel clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.setPositiveButton("Lettuce-leaf", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // code for matching password
+                String amount = moneyVal.getText().toString();
+                String time = timePeriod.getText().toString();
+                Toast.makeText(getBaseContext(),"Now saving $" + amount + " over " + time, Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog = alert.create();
+        dialog.show();
+
+    }
+
     //Graphs will be setup using user deposit info
     public void setupGraph(){
         graph = (GraphView) findViewById(R.id.graph);
@@ -97,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getBaseContext(), "$420.69", Toast.LENGTH_SHORT).show();
     }
 
-    public void newGoal(View view){
-
+    public void newGoalWindow(View view){
+        displayAlertDialog();
     }
 }

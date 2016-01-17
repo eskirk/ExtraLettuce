@@ -6,7 +6,8 @@
     <string name="link_routing_number">Routing number</string>
     <string name="link_account_number">Accounting number</string>
     <string name="link_more_info">Why do you need this?</string>
-    <string name="continue_text">CONTINUE</string>
+    <string name="link_button_text">LINK ACCOUNT"</string>
+    <string name="continue_button_text">CONTINUE</string>
     <string name="goalInfoButton">Goal</string>
     <string name="infoButtonText">Goalx</string>
     <string name="appwidget_text">EXAMPLE</string>

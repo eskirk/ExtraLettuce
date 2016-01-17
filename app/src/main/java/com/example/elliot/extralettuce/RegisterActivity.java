@@ -38,7 +38,7 @@ public class RegisterActivity extends Activity {
                 String email = mUserEmail.getText().toString().trim();
                 Intent returnHome = new Intent(RegisterActivity.this, MainActivity.class);
                 startActivity(returnHome);
-//www.extraleetuce.co/account/create
+                //www.extraleetuce.co/account/create
 
             }
         });
