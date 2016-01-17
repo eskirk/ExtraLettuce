@@ -1,6 +1,9 @@
 package com.example.elliot.extralettuce.fragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +15,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.elliot.extralettuce.Endpoints;
+import com.example.elliot.extralettuce.Preferences;
 import com.example.elliot.extralettuce.R;
 import com.example.elliot.extralettuce.adapters.GoalCardAdapter;
 import com.example.elliot.extralettuce.dataClasses.Goal;
@@ -22,6 +32,8 @@ import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +49,7 @@ public class GraphFragment extends Fragment {
     private GraphView graph;
     private RecyclerView goalRecyclerView;
     private GoalCardAdapter goalCardAdapter;
+    private List<Goal> goalList;
 
     public GraphFragment() {
         // Required empty public constructor
@@ -57,22 +70,23 @@ public class GraphFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        goalCardAdapter = new GoalCardAdapter(new ArrayList<Goal>());
+        getGoalsFromServer();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         layout = (RelativeLayout) inflater.inflate(R.layout.fragment_home_view, container, false);
         goalRecyclerView = (RecyclerView) layout.findViewById(R.id.goal_recycler);
         goalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        goalCardAdapter = new GoalCardAdapter(new ArrayList<Goal>());
         goalRecyclerView.setAdapter(goalCardAdapter);
 
         setupGraph();
 
         return layout;
-    }
-
-    public void setGoalList(List<Goal> goalList) {
-        if (goalCardAdapter != null)
-            goalCardAdapter.setGoalList(goalList);
     }
 
     public void addGoal(Goal newGoal) {
@@ -100,4 +114,49 @@ public class GraphFragment extends Fragment {
             }
         });
     }
+
+    private void getGoalsFromServer() {
+        new AsyncTask<Void, Void, Void>() {
+
+            class JSONObjectErrorListener implements Response.ErrorListener {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+
+            class JSONObjectResponseListener implements Response.Listener<JSONObject> {
+
+                 @Override
+                 public void onResponse(JSONObject response) {
+
+                 }
+             }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    SharedPreferences preferences = getContext().getSharedPreferences(Preferences.PREF_NAME, Context.MODE_PRIVATE);
+
+                    JSONObject headerObject = new JSONObject();
+                    headerObject.put("Authorization", "Token " + preferences.getString("TOKEN", ""));
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                            Request.Method.GET,
+                            Endpoints.BASE_URL + Endpoints.GOALS,
+                            headerObject,
+                            new JSONObjectResponseListener(),
+                            new JSONObjectErrorListener());
+                    Volley.newRequestQueue(getContext()).add(jsonObjectRequest);
+
+                } catch(Exception e) {
+
+                }
+
+                //TODO get goals and add each goal to goalCardAdapter.goalsList
+                return null;
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
 }

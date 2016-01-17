@@ -14,6 +14,7 @@ public class Goal {
     private int days;
     private int currentBal;
 
+    //Goals can be gotten from the server through www.extralettuce.co/account/goals
     public Goal(String goalName, int goalAmount, int days, int currentBal) {
         this.goalName = goalName;
         this.goalAmount = goalAmount;
