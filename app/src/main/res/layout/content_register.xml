@@ -100,7 +100,7 @@
                 android:inputType="textPassword"
                 android:hint="Verify Password"
                 android:ems="10"
-                android:id="@+id/verifyPWEditText"
+                android:id="@+id/verifyPWRegisterEditText"
                 android:layout_below="@+id/passwordRegisterEditText"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="2dp"
