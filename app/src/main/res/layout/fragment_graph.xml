@@ -9,7 +9,10 @@
         android:layout_height="200dp"
         android:id="@+id/graph"
         android:elevation="20dp"
-        android:background="#81c784">
+        android:background="#81c784"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
         <!-- <shape android:shape="rectangle" >
              <corners android:radius="3dip" />
          </shape>
