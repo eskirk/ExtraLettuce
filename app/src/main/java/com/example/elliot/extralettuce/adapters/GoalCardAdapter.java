@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.elliot.extralettuce.dataClasses.Goal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +52,9 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    public void setGoalList(List<Goal> goalList) {
+        this.goalList = goalList;
+    }
 
     private void sortList() {
 
