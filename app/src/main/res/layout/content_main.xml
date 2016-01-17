@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_menu_slideshow"
-        android:onClick="newGoalCard" />
+        android:src="@drawable/add_24dp"
+        android:onClick="newGoalCard"
+        android:tint="#ffffff" />
 
 </android.support.design.widget.CoordinatorLayout>
