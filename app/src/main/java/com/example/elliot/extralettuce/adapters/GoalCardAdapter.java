@@ -1,7 +1,6 @@
 package com.example.elliot.extralettuce.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,14 @@ import com.example.elliot.extralettuce.R;
 import com.example.elliot.extralettuce.dataClasses.Goal;
 import com.example.elliot.extralettuce.support._HelperFunctions;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
 
 
 public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHolder> {
     private List<Goal> goalList;
+    private SlideInLeftAnimationAdapter adapterWrapper;
 
     public GoalCardAdapter(List<Goal> goals) {
         goalList = goals;
@@ -47,16 +46,19 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
         return goalList != null ? goalList.size() : 0;
     }
 
+    public void setAdapterWrapper(SlideInLeftAnimationAdapter adapterWrapper) {
+        this.adapterWrapper = adapterWrapper;
+    }
 
     public void addGoal(Goal goal) {
-        goalList.add(goal);
+        goalList.add(0, goal);
         sortList();
-        notifyDataSetChanged();
+        adapterWrapper.notifyItemInserted(0);
     }
 
     public void removeGoal(int pos) {
         goalList.remove(pos);
-        notifyDataSetChanged();
+        adapterWrapper.notifyItemRemoved(pos);
     }
 
     public void setGoalList(List<Goal> goalList) {
