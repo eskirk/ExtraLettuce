@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.elliot.extralettuce.LinkActivity"
-    tools:showIn="@layout/activity_link"
     android:background="#00C853"
     android:paddingRight="15dp"
     android:paddingLeft="15dp"
@@ -51,6 +50,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="3dp"
         android:orientation="vertical"
+        android:background="@color/white"
         android:id="@+id/linkCenterSheet"
         android:layout_below="@+id/linkIconImageView"
         android:layout_marginTop="50dp"
@@ -60,6 +60,18 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="18dp"/>
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:id="@+id/linkBankSelectSpinner"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="18dp"
+                android:text="Select a bank"/>
 
             <EditText
                 android:layout_width="fill_parent"
@@ -68,15 +80,16 @@
                 android:inputType="number"
                 android:layout_gravity="top"
                 android:textSize="30sp"
+                android:layout_below="@id/linkBankSelectSpinner"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:id="@+id/linkRoutingTextView"/>
+                android:id="@+id/linkBankUsernameTextView" />
             <space
                 android:background="@drawable/divider"
                 android:layout_height="1dp"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/linkRoutingTextView"
+                android:layout_below="@+id/linkBankUsernameTextView"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp" />
 
@@ -84,21 +97,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linkRoutingTextView"
+                android:layout_below="@+id/linkBankUsernameTextView"
                 android:text="@string/link_username"
                 android:layout_gravity="left"
                 android:textSize="20sp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="2dp"
                 android:textColor="#6F6F6F"
-                android:id="@+id/linkBankUsernameTextView"/>
+                android:id="@+id/linkBankUsernameSubtitle"/>
 
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linkBankUsernameTextView"
+                android:layout_below="@+id/linkBankUsernameSubtitle"
                 android:background="@color/white"
                 android:inputType="textPassword"
                 android:layout_gravity="top"
@@ -106,7 +118,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:id="@+id/linkBankPasswordTextView"></EditText>
+                android:id="@+id/linkBankPasswordTextView"/>
                 <space
                 android:background="@drawable/divider"
                 android:layout_height="1dp"
@@ -126,12 +138,13 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="2dp"
                 android:textColor="#6F6F6F"
-                android:id="@+id/linkBankSubtitle"/>
+                android:id="@+id/linkBankPasswordSubtitle"/>
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="18dp"
-                android:layout_below="@+id/linkBankSubtitle"/>
+                android:layout_below="@+id/linkBankPasswordSubtitle"/>
+
 
         </RelativeLayout>
 
@@ -144,7 +157,7 @@
         android:layout_above="@+id/linkTransitionButton"
         android:id="@+id/moreInfoTextView"
         android:layout_centerInParent="true"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_marginBottom="20dp"/>
 
@@ -154,7 +167,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_corners"
         android:text="@string/link_button_text"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#00C853"
         android:id="@+id/linkTransitionButton"
         android:elevation="4dp"

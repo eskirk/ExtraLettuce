@@ -5,7 +5,7 @@
     <string name="link_account_icon_cd">Link sAccount Icon</string>
     <string name="link_username">Bank username</string>
     <string name="link_password">Bank password</string>
-    <string name="link_more_info">Why do you need this?</string>
+    <string name="link_more_info"><u>Why do you need this?</u></string>
     <string name="link_button_text">LINK ACCOUNT"</string>
     <string name="continue_button_text">CONTINUE</string>
     <string name="goalInfoButton">Goal</string>
