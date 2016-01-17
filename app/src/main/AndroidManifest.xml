@@ -17,21 +17,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".LinkActivity"
             android:label="@string/title_activity_link"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <receiver android:name="drawable.NewGoal">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/new_goal_info" />
-        </receiver>
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
 
         <activity
             android:name=".RegisterActivity"
