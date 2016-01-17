@@ -5,4 +5,5 @@ package com.example.elliot.extralettuce;
  */
 public class Preferences {
     public static final String PREF_NAME = "LettucePrefs";
+    public static final String TOKEN = "Token";
 }
