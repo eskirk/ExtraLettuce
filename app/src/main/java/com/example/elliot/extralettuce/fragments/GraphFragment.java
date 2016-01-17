@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -37,6 +38,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.SlideInLeftAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link GraphFragment#newInstance} factory method to
@@ -48,6 +53,7 @@ public class GraphFragment extends Fragment {
     private GraphView graph;
     private RecyclerView goalRecyclerView;
     private GoalCardAdapter goalCardAdapter;
+    private SlideInLeftAnimationAdapter adapterWrapper;
     private List<Goal> goalList;
 
     public GraphFragment() {
@@ -65,6 +71,9 @@ public class GraphFragment extends Fragment {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         goalCardAdapter = new GoalCardAdapter(new ArrayList<Goal>());
+        adapterWrapper = new SlideInLeftAnimationAdapter(goalCardAdapter);
+        adapterWrapper.setFirstOnly(false);
+        goalCardAdapter.setAdapterWrapper(adapterWrapper);
         getGoalsFromServer();
     }
 
@@ -74,7 +83,9 @@ public class GraphFragment extends Fragment {
         layout = (RelativeLayout) inflater.inflate(R.layout.fragment_graph, container, false);
         goalRecyclerView = (RecyclerView) layout.findViewById(R.id.goal_recycler);
         goalRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        goalRecyclerView.setAdapter(goalCardAdapter);
+        goalRecyclerView.setItemAnimator(new SlideInLeftAnimator(new OvershootInterpolator(1f)));
+        goalRecyclerView.setAdapter(adapterWrapper);
+
 
         setupGraph();
 
@@ -82,8 +93,10 @@ public class GraphFragment extends Fragment {
     }
 
     public void addGoal(Goal newGoal) {
-        if (goalCardAdapter != null)
+        if (goalCardAdapter != null) {
             goalCardAdapter.addGoal(newGoal);
+        }
+
     }
 
     //Graphs will be setup using user deposit info
