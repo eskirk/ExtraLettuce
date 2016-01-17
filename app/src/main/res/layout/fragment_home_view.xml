@@ -18,7 +18,7 @@
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="200dip"
+        android:layout_height="200dp"
         android:id="@+id/graph"
         android:elevation="20dp"
         android:background="#81c784">
