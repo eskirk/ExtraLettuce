@@ -2,7 +2,6 @@ package com.example.elliot.extralettuce;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -204,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     public void button1Click(View view) {
-        Toast.makeText(getBaseContext(), "$" + balance + " out of your $" + goal + "!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Modify placeholder.", Toast.LENGTH_SHORT).show();
     }
 
     public void returnBalance(View view) {

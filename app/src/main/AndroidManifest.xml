@@ -38,6 +38,13 @@
         </activity>
 
         <activity
+            android:name=".FrequencyActivity"
+            android:label="@string/title_activity_register"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:noHistory="true">
+        </activity>
+
+        <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme.NoActionBar"

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,13 +26,6 @@ import com.example.elliot.extralettuce.R;
 import com.example.elliot.extralettuce.adapters.GoalCardAdapter;
 import com.example.elliot.extralettuce.dataClasses.Goal;
 import com.example.elliot.extralettuce.support.CustomJsonArrayRequest;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.DataPointInterface;
-import com.jjoe64.graphview.series.LineGraphSeries;
-import com.jjoe64.graphview.series.OnDataPointTapListener;
-import com.jjoe64.graphview.series.Series;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +45,6 @@ import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 public class GraphFragment extends Fragment {
 
     private RelativeLayout layout;
-    private GraphView graph;
     private RecyclerView goalRecyclerView;
     private GoalCardAdapter goalCardAdapter;
     private SlideInLeftAnimationAdapter adapterWrapper;
@@ -94,7 +85,7 @@ public class GraphFragment extends Fragment {
         goalRecyclerView.setAdapter(adapterWrapper);
 
 
-        setupGraph();
+        //setupGraph();
 
         return layout;
     }
@@ -107,40 +98,9 @@ public class GraphFragment extends Fragment {
     }
 
     //Graphs will be setup using user deposit info
-    public void setupGraph(){
-        graph = (GraphView) layout.findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-        graph.getGridLabelRenderer().setHighlightZeroLines(true);
-        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
-        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
-        graph.getGridLabelRenderer().setVerticalAxisTitle("$");
-        graph.setTitle("Progress");
-
-        series.setOnDataPointTapListener(new OnDataPointTapListener() {
-        @Override
-        public void onTap(Series series, DataPointInterface dataPoint) {
-        Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
-         }
-         });
-
-//  getDepositsFromServer();
-//        deposits = new ArrayList<Integer>();
-//
+//    public void setupGraph(){
 //        graph = (GraphView) layout.findViewById(R.id.graph);
-//        List<DataPoint> points = new ArrayList<DataPoint>();
-//        Scanner scan;
-//        for (int i = 0; i < deposits.size(); i++){
-//            scan = new Scanner(dates.get(i));
-//            scan.useDelimiter("-");
-//            points.add(new DataPoint(new Date(scan.nextInt(), scan.nextInt(), scan.nextInt()), deposits.get(i)));
-//        }
-//
 //        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-//        for (int q = 0; q < points.size(); q++){
-//            series.appendData(points.get(q), true, points.size());
-//        }
-//
-//        graph.addSeries(series);
 //        graph.getGridLabelRenderer().setHighlightZeroLines(true);
 //        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
 //        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
@@ -148,12 +108,43 @@ public class GraphFragment extends Fragment {
 //        graph.setTitle("Progress");
 //
 //        series.setOnDataPointTapListener(new OnDataPointTapListener() {
-//            @Override
-//            public void onTap(Series series, DataPointInterface dataPoint) {
-//                Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-    }
+//        @Override
+//        public void onTap(Series series, DataPointInterface dataPoint) {
+//        Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
+//         }
+//         });
+//
+////  getDepositsFromServer();
+////        deposits = new ArrayList<Integer>();
+////
+////        graph = (GraphView) layout.findViewById(R.id.graph);
+////        List<DataPoint> points = new ArrayList<DataPoint>();
+////        Scanner scan;
+////        for (int i = 0; i < deposits.size(); i++){
+////            scan = new Scanner(dates.get(i));
+////            scan.useDelimiter("-");
+////            points.add(new DataPoint(new Date(scan.nextInt(), scan.nextInt(), scan.nextInt()), deposits.get(i)));
+////        }
+////
+////        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+////        for (int q = 0; q < points.size(); q++){
+////            series.appendData(points.get(q), true, points.size());
+////        }
+////
+////        graph.addSeries(series);
+////        graph.getGridLabelRenderer().setHighlightZeroLines(true);
+////        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.BOTH);
+////        graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
+////        graph.getGridLabelRenderer().setVerticalAxisTitle("$");
+////        graph.setTitle("Progress");
+////
+////        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+////            @Override
+////            public void onTap(Series series, DataPointInterface dataPoint) {
+////                Toast.makeText(getContext(), "Clicked on data point " + dataPoint, Toast.LENGTH_SHORT).show();
+////            }
+////        });
+//    }
 
 
 

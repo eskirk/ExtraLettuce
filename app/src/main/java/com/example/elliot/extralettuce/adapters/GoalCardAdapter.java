@@ -51,9 +51,9 @@ public class GoalCardAdapter extends RecyclerView.Adapter<GoalCardAdapter.ViewHo
     }
 
     public void addGoal(Goal goal) {
-        goalList.add(0, goal);
+        goalList.add(goal);
         sortList();
-        adapterWrapper.notifyItemInserted(0);
+        adapterWrapper.notifyItemInserted(goalList.size() - 1);
     }
 
     public void removeGoal(int pos) {

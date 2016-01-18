@@ -87,7 +87,7 @@ public class LinkActivity extends AppCompatActivity {
 
         public void nextOnClick(View view) {
         if(infoValidated) {
-            Intent returnHome = new Intent(LinkActivity.this, MainActivity.class);
+            Intent returnHome = new Intent(LinkActivity.this, FrequencyActivity.class);
             startActivity(returnHome);
         } else {
             attemptLink();
@@ -114,7 +114,7 @@ public class LinkActivity extends AppCompatActivity {
             class JsonObjectErrorListener implements Response.ErrorListener {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("success", error.getMessage());
+//                    Log.e("success", error.getMessage());
                 }
             }
 
@@ -140,7 +140,7 @@ public class LinkActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                Intent returnHome = new Intent(LinkActivity.this, MainActivity.class);
+                Intent returnHome = new Intent(LinkActivity.this, FrequencyActivity.class);
                 LinkActivity.this.startActivity(returnHome);
             }
 
