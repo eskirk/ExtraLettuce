@@ -4,20 +4,16 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.jjoe64.graphview.GraphView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/graph"
         android:elevation="20dp"
         android:background="#81c784"
         android:layout_marginTop="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp">
-        <!-- <shape android:shape="rectangle" >
-             <corners android:radius="3dip" />
-         </shape>
-        -->
-    </com.jjoe64.graphview.GraphView>
+        android:src="@drawable/topheader"
+        android:scaleType="fitXY">
+    </ImageView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/goal_recycler"
