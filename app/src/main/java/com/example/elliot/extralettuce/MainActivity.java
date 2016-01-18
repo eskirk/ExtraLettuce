@@ -2,6 +2,7 @@ package com.example.elliot.extralettuce;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,11 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int BANK_POS = 1;
     private static final int SETTINGS_POS = 2;
     private int mPosition = GRAPH_POS;
-
+    private String dialog_goal;
+    private int dialog_amount;
     private GraphFragment graphFragment;
     private BankFragment bankFragment;
     private SettingsFragment settingsFragment;
@@ -207,7 +212,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void newGoalCard(View view) {
-        graphFragment.addGoal(new Goal("A rare pepe", 420, 365, 400));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
+
+        LinearLayout ll = new LinearLayout(this);
+        final EditText goalNameInput = new EditText(this);
+        final EditText goalAmountInput = new EditText(this);
+        TableLayout.LayoutParams params = new TableLayout.LayoutParams();
+        params.setMargins(16,0,16,0);
+        goalNameInput.setHint("Name");
+        goalNameInput.setMaxLines(1);
+        goalAmountInput.setHint("Amount");
+        goalAmountInput.setMaxLines(1);
+        goalNameInput.setLayoutParams(params);
+        goalAmountInput.setLayoutParams(params);
+
+        //ll.setBackgroundColor(Color.parseColor(("#00C853")));
+        goalNameInput.setInputType(InputType.TYPE_CLASS_TEXT);
+        goalAmountInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.addView(goalNameInput);
+        ll.addView(goalAmountInput);
+
+        builder.setView(ll);
+        builder.setTitle("Add Goal");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog_goal = goalNameInput.getText().toString();
+                dialog_amount = Integer.parseInt(goalAmountInput.getText().toString());
+                graphFragment.addGoal(new Goal(dialog_goal, dialog_amount*100, 365, 400));
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     public int getBalanceFromServer() {
